@@ -6,7 +6,7 @@ Pre-built, production-ready Python images optimized for Coder remote development
 
 ## Key Details
 - **Base Image**: Official Python (Debian Trixie)
-- **Supported Python Versions**: 3.13, 3.14
+- **Supported Python Versions**: 3.14, 3.13, 3.12, 3.11, 3.10
 - **Default Tag**: `latest` → Python 3.14
 - **Builder**: Docker Buildx Bake (static matrix configuration)
 - **Registry**: Customizable via the `REGISTRY` environment variable (default: `harbor.cluster.internal`)
@@ -37,7 +37,7 @@ All built images are stored in the internal registry:
 `harbor.cluster.internal/coder-images/python`
 
 Available tags:
-`3.13`, `3.14`, `latest`
+`3.14`, `3.13`, `3.12`, `3.11`, `3.10`, `latest`
 
 ## Project Purpose
 Part of the **Coder Resources** ecosystem:
