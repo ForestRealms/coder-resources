@@ -1,0 +1,23 @@
+#!/bin/bash
+set -e
+
+if [ "${INSTALL_WEBSTORM}" = "false" ]; then
+    echo "Skipping install JetBrains WebStrom..."
+    exit 0
+fi
+
+FLAG="/root/.webstorm_installed"
+
+if [ -f "$FLAG" ]; then
+    echo "WebStrom installed, skipped."
+    exit 0
+fi
+
+echo "Installing JetBrains WebStrom..."
+curl -L $JETBRAINS_DOWNLOAD_URL -o /root/webstorm.tar.gz
+mkdir -p /root/.local/share/JetBrains/Toolbox/apps
+tar -xzf /root/webstorm.tar.gz -C /root/.local/share/JetBrains/Toolbox/apps/ --strip-components=1
+rm -f /root/webstorm.tar.gz
+
+touch "$FLAG"
+echo "Installation Complete!"

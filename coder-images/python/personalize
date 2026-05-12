@@ -1,0 +1,23 @@
+#!/bin/bash
+set -e
+
+if [ "${INSTALL_PYCHARM}" = "false" ]; then
+    echo "Skipping install JetBrains WebStrom..."
+    exit 0
+fi
+
+FLAG="/root/.pycharm_installed"
+
+if [ -f "$FLAG" ]; then
+    echo "PyCharm installed, skipped."
+    exit 0
+fi
+
+echo "Installing JetBrains PyCharm..."
+curl -L "http://mirrors.cluster.internal/jetbrains/backends/PY/pycharm-2026.1.1.tar.gz" -o /root/pycharm.tar.gz
+mkdir -p /root/.local/share/JetBrains/Toolbox/apps
+tar -xzf /root/pycharm.tar.gz -C /root/.local/share/JetBrains/Toolbox/apps/ --strip-components=1
+rm -f /root/pycharm.tar.gz
+
+touch "$FLAG"
+echo "Installation Complete!"
