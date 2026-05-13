@@ -14,7 +14,7 @@ if [ -f "$FLAG" ]; then
 fi
 
 echo "Installing JetBrains PyCharm..."
-curl -L "http://mirrors.cluster.internal/jetbrains/backends/PY/pycharm-2026.1.1.tar.gz" -o /root/pycharm.tar.gz
+curl -L "$JETBRAINS_DOWNLOAD_URL" -o /root/pycharm.tar.gz
 mkdir -p /root/.local/share/JetBrains/Toolbox/apps
 tar -xzf /root/pycharm.tar.gz -C /root/.local/share/JetBrains/Toolbox/apps/ --strip-components=1
 rm -f /root/pycharm.tar.gz
