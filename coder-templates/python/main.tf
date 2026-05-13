@@ -37,20 +37,20 @@ data "coder_parameter" "python_version" {
     value = "harbor.cluster.internal/coder-images/python:3.13"
   }
 
-  # option {
-  #   name  = "Python 3.12"
-  #   value = "harbor.cluster.internal/coder-images/python3.12"
-  # }
+  option {
+    name  = "Python 3.12"
+    value = "harbor.cluster.internal/coder-images/python:3.12"
+  }
 
-  # option {
-  #   name  = "Python 3.11"
-  #   value = "harbor.cluster.internal/coder-images/python3.11"
-  # }
+  option {
+    name  = "Python 3.11"
+    value = "harbor.cluster.internal/coder-images/python:3.11"
+  }
 
-  # option {
-  #   name  = "Python 3.10"
-  #   value = "harbor.cluster.internal/coder-images/python3.10"
-  # }
+  option {
+    name  = "Python 3.10"
+    value = "harbor.cluster.internal/coder-images/python:3.10"
+  }
 }
 
 data "coder_parameter" "install_pycharm" {
