@@ -21,27 +21,27 @@ target "jdk" {
     item = [
       {
         version = "8"
-        upstream = "eclipse-temurin:8-jdk-noble"
+        upstream = "eclipse-temurin:8-jdk-resolute"
         tags = ["${REGISTRY}/coder-images/eclipse-temurin:8"]
       },
       {
         version = "11"
-        upstream = "eclipse-temurin:11-jdk-noble"
+        upstream = "eclipse-temurin:11-jdk-resolute"
         tags = ["${REGISTRY}/coder-images/eclipse-temurin:11"]
       },
       {
         version = "17"
-        upstream = "eclipse-temurin:17-jdk-noble"
+        upstream = "eclipse-temurin:17-jdk-resolute"
         tags = ["${REGISTRY}/coder-images/eclipse-temurin:17"]
       },
       {
         version = "21"
-        upstream = "eclipse-temurin:21-jdk-noble"
+        upstream = "eclipse-temurin:21-jdk-resolute"
         tags = ["${REGISTRY}/coder-images/eclipse-temurin:21"]
       },
       {
         version = "25"
-        upstream = "eclipse-temurin:25-jdk-noble"
+        upstream = "eclipse-temurin:25-jdk-resolute"
         tags = [
           "${REGISTRY}/coder-images/eclipse-temurin:25",
           "${REGISTRY}/coder-images/eclipse-temurin:latest"
@@ -49,7 +49,7 @@ target "jdk" {
       },
       {
         version = "26"
-        upstream = "eclipse-temurin:26-jdk-noble"
+        upstream = "eclipse-temurin:26-jdk-resolute"
         tags = ["${REGISTRY}/coder-images/eclipse-temurin:26"]
       }
     ]
