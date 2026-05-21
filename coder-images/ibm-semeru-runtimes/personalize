@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+FLAG="/root/.idea_installed"
+
+if [ -f "$FLAG" ]; then
+    echo "IDEA installed, skipped."
+    exit 0
+fi
+
+echo "Installing JetBrains IDEA..."
+curl -L $JETBRAINS_DOWNLOAD_URL -o /root/idea.tar.gz
+mkdir -p /root/.local/share/JetBrains/Toolbox/apps
+tar -xzf /root/idea.tar.gz -C /root/.local/share/JetBrains/Toolbox/apps/ --strip-components=1
+rm -f /root/idea.tar.gz
+
+touch "$FLAG"
+echo "Installation Complete!"
