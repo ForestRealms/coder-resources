@@ -100,6 +100,11 @@ data "coder_parameter" "redis_version" {
   form_type   = "dropdown"
 
   option {
+    name  = "Redis 8.8.0"
+    value = "redis:8.8.0"
+  }
+
+  option {
     name  = "Redis 8.6.2"
     value = "redis:8.6.2"
   }
