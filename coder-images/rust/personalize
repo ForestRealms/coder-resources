@@ -1,0 +1,23 @@
+#!/bin/bash
+set -e
+
+if [ "${INSTALL_RUSTROVER}" = "false" ]; then
+    echo "Skipping install JetBrains RustRover..."
+    exit 0
+fi
+
+FLAG="/root/.rr_installed"
+
+if [ -f "$FLAG" ]; then
+    echo "RustRover installed, skipped."
+    exit 0
+fi
+
+echo "Installing JetBrains RustRover..."
+curl -L $JETBRAINS_DOWNLOAD_URL -o /root/idea.tar.gz
+mkdir -p /root/.local/share/JetBrains/Toolbox/apps
+tar -xzf /root/idea.tar.gz -C /root/.local/share/JetBrains/Toolbox/apps/ --strip-components=1
+rm -f /root/idea.tar.gz
+
+touch "$FLAG"
+echo "Installation Complete!"
