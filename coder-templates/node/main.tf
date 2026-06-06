@@ -28,8 +28,8 @@ data "coder_parameter" "node_version" {
   form_type   = "dropdown"
 
   option {
-    name  = "Node 25"
-    value = "harbor.cluster.internal/coder-images/node:25"
+    name  = "Node 26 LTS"
+    value = "harbor.cluster.internal/coder-images/node:26"
   }
 
   option {
@@ -39,7 +39,7 @@ data "coder_parameter" "node_version" {
 
   option {
     name  = "Node 22 LTS"
-    value = "harbor.cluster.internal/coder-images/node22"
+    value = "harbor.cluster.internal/coder-images/node:22"
   }
 }
 
