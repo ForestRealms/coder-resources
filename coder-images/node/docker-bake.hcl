@@ -7,7 +7,7 @@ variable "REGISTRY" {
 }
 
 variable "JETBRAINS_DOWNLOAD_URL" {
-  default = "http://mirrors.cluster.internal/jetbrains/backends/WS/WebStorm-2026.1.2.tar.gz"
+  default = "http://mirrors.cluster.internal/jetbrains/backends/WS/WebStorm-2026.1.3.tar.gz"
 }
 
 group default {
