@@ -29,27 +29,27 @@ data "coder_parameter" "python_version" {
 
   option {
     name  = "Python 3.14"
-    value = "harbor.cluster.internal/coder-images/python:3.14"
+    value = "harbor.cluster.internal/coder-images/python:3.14.6"
   }
 
   option {
     name  = "Python 3.13"
-    value = "harbor.cluster.internal/coder-images/python:3.13"
+    value = "harbor.cluster.internal/coder-images/python:3.13.14"
   }
 
   option {
     name  = "Python 3.12"
-    value = "harbor.cluster.internal/coder-images/python:3.12"
+    value = "harbor.cluster.internal/coder-images/python:3.12.13"
   }
 
   option {
     name  = "Python 3.11"
-    value = "harbor.cluster.internal/coder-images/python:3.11"
+    value = "harbor.cluster.internal/coder-images/python:3.11.15"
   }
 
   option {
     name  = "Python 3.10"
-    value = "harbor.cluster.internal/coder-images/python:3.10"
+    value = "harbor.cluster.internal/coder-images/python:3.10.20"
   }
 }
 
