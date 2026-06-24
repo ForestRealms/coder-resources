@@ -197,7 +197,7 @@ module "jetbrains" {
   agent_name = "main"
   folder     = "/root/project"
   ide_config = {
-    "PY" = { build = "261.24374.152" }
+    "PY" = { build = "261.25134.203" }
   }
   options = ["PY"]
   tooltip    = "You need to [install JetBrains Toolbox](https://coder.com/docs/user-guides/workspace-access/jetbrains/toolbox) to use this app."
@@ -245,6 +245,7 @@ resource "docker_container" "workspace" {
     "CODER_AGENT_TOKEN=${coder_agent.main.token}",
     "INSTALL_PYCHARM=${data.coder_parameter.install_pycharm.value}"
   ]
+  shm_size = 4096
   host {
     host = "host.docker.internal"
     ip   = "host-gateway"
