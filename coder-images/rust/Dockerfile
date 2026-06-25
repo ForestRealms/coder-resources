@@ -2,6 +2,7 @@ ARG UPSTREAM
 FROM ${UPSTREAM}
 
 ARG CHANGE_SOURCE=false
+COPY --chown=root:root personalize /root
 RUN if [ "$CHANGE_SOURCE" = "true" ]; then \
     printf 'Types: deb\n\
 URIs: https://mirrors.pku.edu.cn/debian\n\
@@ -17,10 +18,11 @@ Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg\n' > /etc/apt/sources.
     fi && \
     apt-get update && \
     apt-get install -y curl gzip procps && \
-    apt-get clean all
+    apt-get clean all && \
+    echo 'export PATH=/usr/local/cargo/bin:$PATH' > /etc/profile.d/rust.sh && \
+    chmod +x /etc/profile.d/rust.sh && \
+    chmod +x /root/personalize
 
 ARG JETBRAINS_DOWNLOAD_URL
 ENV JETBRAINS_DOWNLOAD_URL=${JETBRAINS_DOWNLOAD_URL}
-COPY --chown=root:root personalize /root
-RUN apt update && apt install -y curl gzip procps && apt clean all && chmod +x /root/personalize
 WORKDIR /root
