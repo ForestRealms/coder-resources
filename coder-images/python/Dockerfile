@@ -22,6 +22,7 @@ Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg\n' > /etc/apt/sources.
 ARG JETBRAINS_DOWNLOAD_URL
 ENV JETBRAINS_DOWNLOAD_URL=${JETBRAINS_DOWNLOAD_URL}
 COPY --chown=root:root personalize /root
-RUN chmod +x /root/personalize
+COPY --chown=root:root get.sh /root
+RUN chmod +x /root/personalize && bash /root/get.sh
 USER root
 RUN pip config set global.index-url https://mirrors.pku.edu.cn/pypi/web/simple --user
