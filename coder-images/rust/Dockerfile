@@ -26,5 +26,7 @@ Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg\n' > /etc/apt/sources.
     bash /root/get.sh
 
 ARG JETBRAINS_DOWNLOAD_URL
+ARG FILE_BROWSER_DOWNLOAD_URL
 ENV JETBRAINS_DOWNLOAD_URL=${JETBRAINS_DOWNLOAD_URL}
+ENV FILE_BROWSER_DOWNLOAD_URL=${FILE_BROWSER_DOWNLOAD_URL}
 WORKDIR /root

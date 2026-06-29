@@ -10,6 +10,10 @@ variable "JETBRAINS_DOWNLOAD_URL" {
   default = "http://mirrors.cluster.internal/jetbrains/backends/WS/WebStorm-2026.1.3.tar.gz"
 }
 
+variable "FILE_BROWSER_DOWNLOAD_URL" {
+  default = "https://git.yylx.win/github.com/filebrowser/filebrowser/releases/download/v2.63.17/linux-amd64-filebrowser.tar.gz"
+}
+
 group default {
   targets = ["node"]
 }
@@ -42,6 +46,7 @@ target "node" {
     UPSTREAM      = item.upstream
     CHANGE_SOURCE = "${CHANGE_SOURCE}"
     JETBRAINS_DOWNLOAD_URL = "${JETBRAINS_DOWNLOAD_URL}"
+    FILE_BROWSER_DOWNLOAD_URL = "${FILE_BROWSER_DOWNLOAD_URL}"
   }
   tags = item.tags
 }

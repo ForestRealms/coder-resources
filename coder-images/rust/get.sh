@@ -110,7 +110,7 @@ install_filemanager()
 #	filemanager_tag="$(${net_getter}  https://api.github.com/repos/filebrowser/filebrowser/releases/latest | grep -o '"tag_name": ".*"' | sed 's/"//g' | sed 's/tag_name: //g')"
 #	filemanager_url="https://github.com/filebrowser/filebrowser/releases/download/$filemanager_tag/$filemanager_file"
 # Using Proxy in China Mainland
-	filemanager_url="https://git.yylx.win/github.com/filebrowser/filebrowser/releases/download/v2.63.16/$filemanager_file"
+	filemanager_url=$FILE_BROWSER_DOWNLOAD_URL
 	echo "$filemanager_url"
 
 	# Use $PREFIX for compatibility with Termux on Android

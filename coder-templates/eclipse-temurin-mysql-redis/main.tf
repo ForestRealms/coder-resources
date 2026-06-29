@@ -288,6 +288,16 @@ module "jetbrains" {
   tooltip    = "You need to [install JetBrains Toolbox](https://coder.com/docs/user-guides/workspace-access/jetbrains/toolbox) to use this app."
 }
 
+module "filebrowser" {
+  count    = data.coder_workspace.me.start_count
+  source   = "registry.coder.com/coder/filebrowser/coder"
+  version  = "1.1.5"
+  agent_id = coder_agent.main.id
+  folder   = "/root"
+  agent_name = "main"
+  subdomain  = false
+}
+
 resource "docker_volume" "home_volume" {
   name = "coder-${data.coder_workspace.me.id}-home"
   # Protect the volume from being deleted due to changes in attributes.
