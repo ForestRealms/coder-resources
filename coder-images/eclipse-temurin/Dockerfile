@@ -3,8 +3,8 @@ FROM ${UPSTREAM}
 
 ARG CHANGE_SOURCE=false
 RUN if [ "$CHANGE_SOURCE" = "true" ]; then \
-    sed -i 's/archive.ubuntu.com/mirrors.pku.edu.cn/g' /etc/apt/sources.list.d/ubuntu.sources && \
-    sed -i 's/security.ubuntu.com/mirrors.pku.edu.cn/g' /etc/apt/sources.list.d/ubuntu.sources; \
+    sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list.d/ubuntu.sources && \
+    sed -i 's/security.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list.d/ubuntu.sources; \
     fi
 ARG JETBRAINS_DOWNLOAD_URL
 ARG FILE_BROWSER_DOWNLOAD_URL

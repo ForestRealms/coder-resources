@@ -4,13 +4,13 @@ FROM ${UPSTREAM}
 ARG CHANGE_SOURCE=false
 RUN if [ "$CHANGE_SOURCE" = "true" ]; then \
     printf 'Types: deb\n\
-URIs: https://mirrors.pku.edu.cn/debian\n\
+URIs: https://mirrors.aliyun.com/debian\n\
 Suites: trixie trixie-updates trixie-backports\n\
 Components: main contrib non-free non-free-firmware\n\
 Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg\n\
 \n\
 Types: deb\n\
-URIs: https://mirrors.pku.edu.cn/debian-security\n\
+URIs: https://mirrors.aliyun.com/debian-security\n\
 Suites: trixie-security\n\
 Components: main contrib non-free non-free-firmware\n\
 Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg\n' > /etc/apt/sources.list.d/debian.sources; \
