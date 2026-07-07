@@ -187,7 +187,7 @@ module "jetbrains" {
   agent_name = "main"
   folder     = "/root/project"
   ide_config = {
-    "WS" = { build = "261.25134.101" }
+    "WS" = { build = "261.26222.58" }
   }
   options = ["WS"]
   tooltip    = "You need to [install JetBrains Toolbox](https://coder.com/docs/user-guides/workspace-access/jetbrains/toolbox) to use this app."
