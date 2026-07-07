@@ -39,6 +39,7 @@ Supported global build variables:
 - `REGISTRY`: Custom container registry address
 - `CHANGE_SOURCE`: Toggle domestic APT mirror acceleration (default: `false`)
 - `JETBRAINS_DOWNLOAD_URL`: Custom mirror for JetBrains backend offline deployment
+- `FILE_BROWSER_DOWNLOAD_URL`: Custom mirror for FileBrowser application
 
 ### 2. Deploy Templates to Coder
 
