@@ -29,27 +29,27 @@ target "python" {
       {
         version   = "314"
         upstream  = "python:3.14-trixie"
-        tags      = ["${REGISTRY}/coder-images/python:3.14", "${REGISTRY}/coder-images/python:3.14.6", "${REGISTRY}/coder-images/python:latest"]
+        tags      = ["${REGISTRY}/coder-images/python:3.14", "${REGISTRY}/coder-images/python:latest"]
       },
       {
         version   = "313"
         upstream  = "python:3.13-trixie"
-        tags      = ["${REGISTRY}/coder-images/python:3.13", "${REGISTRY}/coder-images/python:3.13.14"]
+        tags      = ["${REGISTRY}/coder-images/python:3.13"]
       },
       {
         version   = "312"
         upstream  = "python:3.12-trixie"
-        tags      = ["${REGISTRY}/coder-images/python:3.12", "${REGISTRY}/coder-images/python:3.12.13"]
+        tags      = ["${REGISTRY}/coder-images/python:3.12"]
       },
       {
         version   = "311"
         upstream  = "python:3.11-trixie"
-        tags      = ["${REGISTRY}/coder-images/python:3.11", "${REGISTRY}/coder-images/python:3.11.15"]
+        tags      = ["${REGISTRY}/coder-images/python:3.11"]
       },
       {
         version   = "310"
         upstream  = "python:3.10-trixie"
-        tags      = ["${REGISTRY}/coder-images/python:3.10", "${REGISTRY}/coder-images/python:3.10.20"]
+        tags      = ["${REGISTRY}/coder-images/python:3.10"]
       },
     ]
   }
