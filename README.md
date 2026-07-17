@@ -40,6 +40,7 @@ Supported global build variables:
 - `CHANGE_SOURCE`: Toggle domestic APT mirror acceleration (default: `false`)
 - `JETBRAINS_DOWNLOAD_URL`: Custom mirror for JetBrains backend offline deployment
 - `FILE_BROWSER_DOWNLOAD_URL`: Custom mirror for FileBrowser application
+- `SYSTEM_MIRROR`: Custom APT mirror URL (must include protocol, e.g. `https://mirrors.aliyun.com`). Used to replace the default Ubuntu/Debian repository servers when `CHANGE_SOURCE=true`.
 
 ### 2. Deploy Templates to Coder
 

@@ -2,12 +2,16 @@ variable "CHANGE_SOURCE" {
   default = "false"
 }
 
+variable "SYSTEM_MIRROR" {
+  default = "https://mirrors.aliyun.com"
+}
+
 variable "REGISTRY" {
   default = "harbor.cluster.internal"
 }
 
 variable "JETBRAINS_DOWNLOAD_URL" {
-  default = "http://mirrors.cluster.internal/jetbrains/backends/IU/idea-2026.1.4.tar.gz"
+  default = "http://mirrors.cluster.internal/jetbrains/backends/IU/idea-2026.2.tar.gz"
 }
 
 variable "FILE_BROWSER_DOWNLOAD_URL" {
@@ -62,9 +66,10 @@ target "jdk" {
   name = "jdk-${item.version}"
   args = {
     UPSTREAM = item.upstream
-    CHANGE_SOURCE = "${CHANGE_SOURCE}"
-    JETBRAINS_DOWNLOAD_URL = "${JETBRAINS_DOWNLOAD_URL}"
-    FILE_BROWSER_DOWNLOAD_URL = "${FILE_BROWSER_DOWNLOAD_URL}"
+    CHANGE_SOURCE = CHANGE_SOURCE
+    JETBRAINS_DOWNLOAD_URL = JETBRAINS_DOWNLOAD_URL
+    FILE_BROWSER_DOWNLOAD_URL = FILE_BROWSER_DOWNLOAD_URL
+    SYSTEM_MIRROR = SYSTEM_MIRROR
   }
   tags = item.tags
 }

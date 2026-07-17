@@ -165,6 +165,23 @@ resource "coder_agent" "main" {
   }
 }
 
+resource "coder_app" "jetbrains" {
+  agent_id   = coder_agent.main.id
+  slug       = "jetbrains"
+  display_name = "JetBrains"
+  icon       = "/icon/jetbrains-toolbox.svg"
+  external   = true
+  url = join("", [
+    "jetbrains://gateway/coder?",
+    "url=",      data.coder_workspace.me.access_url,
+    "&token=",   "$SESSION_TOKEN",
+    "&workspace=", data.coder_workspace.me.name,
+    "&owner=",   data.coder_workspace_owner.me.name,
+    "&agent_name=", "main",
+  ])
+  tooltip = "Opens this workspace in JetBrains Toolbox (requires [JetBrains Toolbox App](https://www.jetbrains.com.cn/toolbox-app/) installed locally)"
+}
+
 # See https://registry.coder.com/modules/coder/code-server
 # module "code-server" {
 #   count  = data.coder_workspace.me.start_count
@@ -185,20 +202,6 @@ module "personalize" {
   agent_id = coder_agent.main.id
 }
 
-# See https://registry.coder.com/modules/coder/jetbrains
-module "jetbrains" {
-  count      = data.coder_workspace.me.start_count
-  source     = "registry.coder.com/coder/jetbrains/coder"
-  version    = "1.4.0"
-  agent_id   = coder_agent.main.id
-  agent_name = "main"
-  folder     = "/root/project"
-  ide_config = {
-    "IU" = { build = "261.26222.65" }
-  }
-  options = ["IU"]
-  tooltip    = "You need to [install JetBrains Toolbox](https://coder.com/docs/user-guides/workspace-access/jetbrains/toolbox) to use this app."
-}
 
 module "filebrowser" {
   count    = data.coder_workspace.me.start_count

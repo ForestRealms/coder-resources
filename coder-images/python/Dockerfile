@@ -2,18 +2,19 @@ ARG UPSTREAM
 FROM ${UPSTREAM}
 
 ARG CHANGE_SOURCE=false
+ARG SYSTEM_MIRROR=""
 RUN if [ "$CHANGE_SOURCE" = "true" ]; then \
-    printf 'Types: deb\n\
-URIs: https://mirrors.aliyun.com/debian\n\
+    printf "Types: deb\n\
+URIs: ${SYSTEM_MIRROR}/debian\n\
 Suites: trixie trixie-updates trixie-backports\n\
 Components: main contrib non-free non-free-firmware\n\
 Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg\n\
 \n\
 Types: deb\n\
-URIs: https://mirrors.aliyun.com/debian-security\n\
+URIs: ${SYSTEM_MIRROR}/debian-security\n\
 Suites: trixie-security\n\
 Components: main contrib non-free non-free-firmware\n\
-Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg\n' > /etc/apt/sources.list.d/debian.sources; \
+Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg\n" > /etc/apt/sources.list.d/debian.sources; \
     fi && \
     apt-get update && \
     apt-get install -y curl gzip procps && \

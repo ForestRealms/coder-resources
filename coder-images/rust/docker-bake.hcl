@@ -2,6 +2,10 @@ variable "CHANGE_SOURCE" {
   default = "false"
 }
 
+variable "SYSTEM_MIRROR" {
+  default = "https://mirrors.aliyun.com"
+}
+
 variable "REGISTRY" {
   default = "harbor.cluster.internal"
 }
@@ -24,9 +28,9 @@ target "rust" {
   matrix = {
     item = [
       {
-        version = "1_96_0"
-        upstream = "rust:1.96.0-trixie"
-        tags = ["${REGISTRY}/coder-images/rust:1.96.0"]
+        version = "1_97_1"
+        upstream = "rust:1.97.1-trixie"
+        tags = ["${REGISTRY}/coder-images/rust:1.97.1"]
       },
     ]
   }
@@ -34,9 +38,10 @@ target "rust" {
   name = "rust-${item.version}"
   args = {
     UPSTREAM = item.upstream
-    CHANGE_SOURCE = "${CHANGE_SOURCE}"
-    JETBRAINS_DOWNLOAD_URL = "${JETBRAINS_DOWNLOAD_URL}"
-    FILE_BROWSER_DOWNLOAD_URL = "${FILE_BROWSER_DOWNLOAD_URL}"
+    CHANGE_SOURCE = CHANGE_SOURCE
+    JETBRAINS_DOWNLOAD_URL = JETBRAINS_DOWNLOAD_URL
+    FILE_BROWSER_DOWNLOAD_URL = FILE_BROWSER_DOWNLOAD_URL
+    SYSTEM_MIRROR = SYSTEM_MIRROR
   }
   tags = item.tags
 }

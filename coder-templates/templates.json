@@ -24,11 +24,6 @@
     "description": "Standard Python development environment.",
     "icon": "/icon/python.svg"
   },
-  "temurin-node-mysql-redis": {
-    "display_name": "JDK (Temurin) + Node + MySQL + Redis",
-    "description": "Full-stack environment with JDK, Node.js, MySQL, and Redis.",
-    "icon": "/icon/java.svg"
-  },
   "rust": {
     "display_name": "Rust",
     "description": "Standard Rust development environment.",
