@@ -23,7 +23,7 @@ variable "docker_socket" {
 data "coder_parameter" "jdk_version" {
   name        = "Rust version"
   type        = "string"
-  mutable     = false
+  mutable     = true
   order       = 1
   form_type   = "dropdown"
 

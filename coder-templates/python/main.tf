@@ -23,7 +23,7 @@ variable "docker_socket" {
 data "coder_parameter" "python_version" {
   name        = "Python version"
   type        = "string"
-  mutable     = false
+  mutable     = true
   order       = 1
   form_type   = "dropdown"
 

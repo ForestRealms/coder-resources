@@ -23,7 +23,7 @@ variable "docker_socket" {
 data "coder_parameter" "jdk_version" {
   name        = "JDK version"
   type        = "string"
-  mutable     = false
+  mutable     = true
   order       = 1
   form_type   = "dropdown"
 
@@ -62,7 +62,7 @@ data "coder_parameter" "mysql_version" {
   name        = "MySQL version"
   description = "Please select MySQL version"
   type        = "string"
-  mutable     = false
+  mutable     = true
   form_type   = "dropdown"
   icon        = "/icon/database.svg"
   order       = 2
@@ -95,7 +95,7 @@ data "coder_parameter" "mysql_root_password" {
 data "coder_parameter" "redis_version" {
   name        = "Redis version"
   type        = "string"
-  mutable     = false
+  mutable     = true
   order       = 5
   form_type   = "dropdown"
 
