@@ -1,17 +1,7 @@
 {
-  "eclipse-temurin": {
-    "display_name": "JDK (Temurin)",
-    "description": "Pre-configured Java workspace with Eclipse Temurin JDK.",
-    "icon": "/icon/java.svg"
-  },
-  "ibm-semeru": {
-    "display_name": "JDK (IBM Semeru)",
-    "description": "Pre-configured Java workspace with IBM Semeru JDK.",
-    "icon": "/icon/java.svg"
-  },
-  "eclipse-temurin-mysql-redis": {
-    "display_name": "JDK (Temurin) + MySQL + Redis",
-    "description": "Pre-configured Java workspace with Eclipse Temurin JDK 25, MySQL, and Redis.",
+  "java": {
+    "display_name": "Java",
+    "description": "Multi-JDK Java workspace with optional MySQL/MariaDB and Redis sidecars.",
     "icon": "/icon/java.svg"
   },
   "node": {

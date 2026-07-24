@@ -28,67 +28,122 @@ data "coder_parameter" "jdk_version" {
   form_type   = "dropdown"
 
   option {
-    name  = "JDK 26"
+    name  = "Eclipse Temurin 26"
     value = "harbor.cluster.internal/coder-images/eclipse-temurin:26"
   }
 
   option {
-    name  = "JDK 25"
+    name  = "Eclipse Temurin 25"
     value = "harbor.cluster.internal/coder-images/eclipse-temurin:25"
   }
 
   option {
-    name  = "JDK 21"
+    name  = "Eclipse Temurin 21"
     value = "harbor.cluster.internal/coder-images/eclipse-temurin:21"
   }
 
   option {
-    name  = "JDK 17"
+    name  = "Eclipse Temurin 17"
     value = "harbor.cluster.internal/coder-images/eclipse-temurin:17"
   }
 
   option {
-    name  = "JDK 11"
+    name  = "Eclipse Temurin 11"
     value = "harbor.cluster.internal/coder-images/eclipse-temurin:11"
   }
 
   option {
-    name  = "JDK 8"
+    name  = "Eclipse Temurin 8"
     value = "harbor.cluster.internal/coder-images/eclipse-temurin:8"
+  }
+
+  option {
+    name  = "IBM Semeru 26"
+    value = "harbor.cluster.internal/coder-images/ibm-semeru-runtimes:26"
+  }
+
+  option {
+    name  = "IBM Semeru 25"
+    value = "harbor.cluster.internal/coder-images/ibm-semeru-runtimes:25"
+  }
+
+  option {
+    name  = "IBM Semeru 21"
+    value = "harbor.cluster.internal/coder-images/ibm-semeru-runtimes:21"
+  }
+
+  option {
+    name  = "IBM Semeru 17"
+    value = "harbor.cluster.internal/coder-images/ibm-semeru-runtimes:17"
+  }
+
+  option {
+    name  = "IBM Semeru 11"
+    value = "harbor.cluster.internal/coder-images/ibm-semeru-runtimes:11"
+  }
+
+  option {
+    name  = "IBM Semeru 8"
+    value = "harbor.cluster.internal/coder-images/ibm-semeru-runtimes:8"
   }
 }
 
-data "coder_parameter" "mysql_version" {
-  name        = "MySQL version"
-  description = "Please select MySQL version"
+data "coder_parameter" "database_version" {
+  name        = "Database version"
+  description = "The database version"
   type        = "string"
   mutable     = true
   form_type   = "dropdown"
   icon        = "/icon/database.svg"
   order       = 2
+  default     = "none"
 
   option {
-    name  = "MySQL 9.7.0"
-    value = "mysql:9.7.0"
+    name  = "MySQL 9.7"
+    value = "mysql:9.7"
   }
 
   option {
-    name  = "MySQL 8.4.9"
-    value = "mysql:8.4.9"
+    name  = "MySQL 8.4"
+    value = "mysql:8.4"
+  }
+
+  option {
+    name  = "MariaDB 12.3"
+    value = "mariadb:12.3"
+  }
+
+  option {
+    name  = "MariaDB 11.8"
+    value = "mariadb:11.8"
+  }
+
+  option {
+    name  = "MariaDB 10.11"
+    value = "mariadb:10.11"
+  }
+
+  option {
+    name  = "No Database"
+    value = "none"
   }
 }
 
-data "coder_parameter" "mysql_database" {
-  name        = "MySQL Database"
+data "coder_parameter" "database_name" {
+  name        = "Database Name"
+  description = "Database name in database instance. Only required when a specific database version (not 'No Database')"
   type        = "string"
-  mutable     = false
+  default     = "database"
+  mutable     = true
   order       = 3
 }
 
-data "coder_parameter" "mysql_root_password" {
-  name        = "MySQL root password"
+data "coder_parameter" "database_root_password" {
+  name        = "Database root password"
+  description = "The root password for the database instance. Only required when a specific database version (not 'No Database') is selected."
   type        = "string"
-  mutable     = false
+  mutable     = true
+  default     = ""
   order       = 4
 }
 
@@ -98,35 +153,46 @@ data "coder_parameter" "redis_version" {
   mutable     = true
   order       = 5
   form_type   = "dropdown"
+  default     = "none"
 
   option {
-    name  = "Redis 8.8.0"
-    value = "redis:8.8.0"
+    name  = "Redis 8.8"
+    value = "redis:8.8"
   }
 
   option {
-    name  = "Redis 8.6.2"
-    value = "redis:8.6.2"
+    name  = "Redis 8.6"
+    value = "redis:8.6"
   }
 
   option {
-    name  = "Redis 8.4.2"
-    value = "redis:8.4.2"
+    name  = "Redis 8.4"
+    value = "redis:8.4"
   }
 
   option {
-    name  = "Redis 8.2.5"
-    value = "redis:8.2.5"
+    name  = "Redis 8.2"
+    value = "redis:8.2"
   }
 
   option {
-    name  = "Redis 8.0.6"
-    value = "redis:8.0.6"
+    name  = "Redis 7.4"
+    value = "redis:7.4"
   }
 
   option {
-    name  = "Redis 7.4.8"
-    value = "redis:7.4.8"
+    name  = "Redis 7.2"
+    value = "redis:7.2"
+  }
+
+  option {
+    name  = "Redis 6.2"
+    value = "redis:6.2"
+  }
+
+  option {
+    name  = "No Redis"
+    value = "none"
   }
 }
 
@@ -157,6 +223,7 @@ resource "coder_agent" "main" {
     fi
 
     # Add any commands that should be executed at workspace startup (e.g install requirements, start a program, etc) here
+    chmod +x /root/personalize && /root/personalize
   EOT
 
   # These environment variables allow you to make Git commits right away after creating a
@@ -239,16 +306,16 @@ resource "coder_agent" "main" {
   metadata {
     display_name  = "Database Hostname"
     key           = "8_database_hostname"
-    script        = "echo ${docker_container.mysql.name}"
-    interval      = 86400
+    script        = try("echo ${docker_container.database[0].name}", "echo 'No database selected'")
+    interval      = 10
     timeout       = 1
   }
 
   metadata {
     display_name  = "Redis Hostname"
     key           = "9_database_hostname"
-    script        = "echo ${docker_container.redis.name}"
-    interval      = 86400
+    script        = try("echo ${docker_container.redis[0].name}", "echo 'No redis selected'")
+    interval      = 10
     timeout       = 1
   }
 }
@@ -269,14 +336,6 @@ resource "coder_app" "jetbrains" {
   ])
   tooltip = "Opens this workspace in JetBrains Toolbox (requires [JetBrains Toolbox App](https://www.jetbrains.com.cn/toolbox-app/) installed locally)"
 }
-
-module "personalize" {
-  count    = data.coder_workspace.me.start_count
-  source   = "registry.coder.com/coder/personalize/coder"
-  version  = "1.0.32"
-  agent_id = coder_agent.main.id
-}
-
 
 module "filebrowser" {
   count    = data.coder_workspace.me.start_count
@@ -315,8 +374,9 @@ resource "docker_volume" "home_volume" {
   }
 }
 
-resource "docker_volume" "mysql_data" {
-  name = "coder-${data.coder_workspace.me.id}-mysql"
+resource "docker_volume" "database_data" {
+  name = "coder-${data.coder_workspace.me.id}-database"
+  count = data.coder_parameter.database_version.value != "none" ? 1 : 0
   # Protect the volume from being deleted due to changes in attributes.
   lifecycle {
     ignore_changes = all
@@ -344,6 +404,7 @@ resource "docker_volume" "mysql_data" {
 
 resource "docker_volume" "redis_data" {
   name = "coder-${data.coder_workspace.me.id}-redis"
+  count = data.coder_parameter.redis_version.value != "none" ? 1 : 0
   # Protect the volume from being deleted due to changes in attributes.
   lifecycle {
     ignore_changes = all
@@ -382,10 +443,15 @@ resource "docker_container" "workspace" {
   hostname = data.coder_workspace.me.name
   # Use the docker gateway if the access URL is 127.0.0.1
   entrypoint = ["sh", "-c", replace(coder_agent.main.init_script, "/localhost|127\\.0\\.0\\.1/", "host.docker.internal")]
-  env        = ["CODER_AGENT_TOKEN=${coder_agent.main.token}"]
+  env        = [
+    "CODER_AGENT_TOKEN=${coder_agent.main.token}",
+    "DATABASE_HOST=${try(docker_container.database[0].name, "")}",
+    "REDIS_HOST=${try(docker_container.redis[0].name, "")}"
+  ]
   networks_advanced {
     name = docker_network.workspace.name
   }
+
   host {
     host = "host.docker.internal"
     ip   = "host-gateway"
@@ -415,21 +481,24 @@ resource "docker_container" "workspace" {
   }
 }
 
-resource "docker_container" "mysql" {
-  name  = "coder-${data.coder_workspace_owner.me.name}-${lower(data.coder_workspace.me.name)}-mysql"
-  image = data.coder_parameter.mysql_version.value
+resource "docker_container" "database" {
+  name  = "coder-${data.coder_workspace_owner.me.name}-${lower(data.coder_workspace.me.name)}-database"
+  image = data.coder_parameter.database_version.value
+  count = data.coder_workspace.me.start_count * (data.coder_parameter.database_version.value != "none" ? 1 : 0)
   restart = "on-failure"
   networks_advanced {
     name = docker_network.workspace.name
   }
 
   env = [
-    "MYSQL_ROOT_PASSWORD=${data.coder_parameter.mysql_root_password.value}",
-    "MYSQL_DATABASE=${data.coder_parameter.mysql_database.value}"
+    "MYSQL_ROOT_PASSWORD=${data.coder_parameter.database_root_password.value}",
+    "MYSQL_DATABASE=${data.coder_parameter.database_name.value}",
+    "MARIADB_ROOT_PASSWORD=${data.coder_parameter.database_root_password.value}",
+    "MARIADB_DATABASE=${data.coder_parameter.database_name.value}",
   ]
 
   volumes {
-    volume_name    = docker_volume.mysql_data.name
+    volume_name    = docker_volume.database_data[count.index].name
     container_path = "/var/lib/mysql"
     read_only      = false
   }
@@ -455,13 +524,14 @@ resource "docker_container" "mysql" {
 resource "docker_container" "redis" {
   name  = "coder-${data.coder_workspace_owner.me.name}-${lower(data.coder_workspace.me.name)}-redis"
   image = data.coder_parameter.redis_version.value
+  count = data.coder_workspace.me.start_count * (data.coder_parameter.redis_version.value != "none" ? 1 : 0)
   restart = "on-failure"
   networks_advanced {
     name = docker_network.workspace.name
   }
 
   volumes {
-    volume_name    = docker_volume.redis_data.name
+    volume_name    = docker_volume.redis_data[count.index].name
     container_path = "/data"
     read_only      = false
   }
