@@ -11,7 +11,7 @@ variable "REGISTRY" {
 }
 
 variable "JETBRAINS_DOWNLOAD_URL" {
-  default = "http://mirrors.cluster.internal/jetbrains/backends/RR/RustRover-2026.1.4.tar.gz"
+  default = "http://mirrors.cluster.internal/jetbrains/backends/RR/RustRover-2026.2.tar.gz"
 }
 
 variable "FILE_BROWSER_DOWNLOAD_URL" {

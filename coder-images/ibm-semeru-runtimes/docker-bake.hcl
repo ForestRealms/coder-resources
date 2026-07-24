@@ -11,7 +11,7 @@ variable "REGISTRY" {
 }
 
 variable "JETBRAINS_DOWNLOAD_URL" {
-  default = "http://mirrors.cluster.internal/jetbrains/backends/IU/idea-2026.2.tar.gz"
+  default = "http://mirrors.cluster.internal/jetbrains/backends/IU/idea-2026.2.0.1.tar.gz"
 }
 
 variable "FILE_BROWSER_DOWNLOAD_URL" {
