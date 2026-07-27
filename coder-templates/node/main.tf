@@ -78,6 +78,7 @@ resource "coder_agent" "main" {
     fi
 
     # Add any commands that should be executed at workspace startup (e.g install requirements, start a program, etc) here
+    chmod +x /root/personalize && /root/personalize
   EOT
 
   # These environment variables allow you to make Git commits right away after creating a
@@ -174,14 +175,6 @@ resource "coder_app" "jetbrains" {
   ])
   tooltip = "Opens this workspace in JetBrains Toolbox (requires [JetBrains Toolbox App](https://www.jetbrains.com.cn/toolbox-app/) installed locally)"
 }
-
-module "personalize" {
-  count    = data.coder_workspace.me.start_count
-  source   = "registry.coder.com/coder/personalize/coder"
-  version  = "1.0.32"
-  agent_id = coder_agent.main.id
-}
-
 
 module "filebrowser" {
   count    = data.coder_workspace.me.start_count
